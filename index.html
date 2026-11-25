@@ -182,6 +182,67 @@ html.tvm body{cursor:none}
 .box input,.box select{font:inherit;color:var(--tx);background:var(--bg);border:2px solid var(--line);border-radius:.5em;padding:.5em}
 .row{display:flex;gap:.6em;justify-content:flex-end}
 #note{color:var(--mut);font-size:.8em;padding:0 1.2em .5em}
+
+
+/* Mobile-first layout refinements for phones */
+@media (max-width: 600px) {
+  html, body { width:100%; min-width:0; min-height:100%; height:auto; overflow-x:hidden; }
+  body { display:flex; flex-direction:column; overflow-y:auto; font-size:16px; padding-bottom:env(safe-area-inset-bottom,0px); }
+  header {
+    display:grid; grid-template-columns:auto minmax(0,1fr) auto auto; align-items:center;
+    gap:.35rem .5rem; width:100%; padding:.55rem .65rem;
+    border-radius:0; position:relative;
+  }
+  #clock { font-size:1.55rem; line-height:1; white-space:nowrap; letter-spacing:-.04em; }
+  #date { min-width:0; font-size:.76rem; line-height:1.2; white-space:normal; overflow-wrap:anywhere; }
+  header button:not(#bMenu):not(#bSignOut) { display:none !important; }
+  #bMenu, #bSignOut { display:inline-flex !important; align-items:center; justify-content:center; min-height:38px; padding:.35rem .55rem; font-size:.78rem; white-space:nowrap; border-radius:.55rem; }
+  #live { font-size:1rem !important; position:absolute; right:.45rem; bottom:-1.35rem; z-index:2; }
+  #alert { margin:.5rem .65rem 0; font-size:.82rem; }
+  main#boardv { display:grid; grid-template-columns:minmax(0,1fr); gap:.7rem; width:100%; padding:.7rem .6rem; min-height:0; overflow:visible; }
+  main#boardv > section, main#boardv .col > section { min-width:0; width:100%; padding:.65rem; border-radius:.75rem; }
+  main#boardv .col { display:grid; grid-template-columns:minmax(0,1fr); gap:.7rem; min-width:0; }
+  h2 { font-size:1.12rem; line-height:1.2; }
+  #monthv { display:none; width:auto; max-width:100%; min-width:0; margin:.65rem .5rem; padding:.55rem; min-height:0; overflow-x:hidden; border-radius:.8rem; }
+  #monthv[style*="display: block"], #monthv[style*="display:block"] { display:flex !important; flex-direction:column; }
+  .mh2 { display:grid; grid-template-columns:minmax(0,1fr) repeat(4,auto); align-items:center; gap:.3rem; width:100%; }
+  .mt { grid-column:1 / -1; font-size:1.65rem; line-height:1.1; margin-bottom:.2rem; }
+  .mh2 button { min-width:36px; min-height:36px; padding:.3rem .45rem; font-size:.8rem; }
+  .mh2 .pri { padding:.3rem .65rem; font-size:1rem; }
+  .leg { gap:.25rem; margin-bottom:.35rem; }
+  .lg { padding:.2rem .45rem; font-size:.68rem; }
+  .mw, .mg { width:100%; min-width:0; grid-template-columns:repeat(7,minmax(0,1fr)) !important; }
+  .mw { font-size:.72rem; padding-bottom:.25rem; }
+  .mg { grid-auto-rows:minmax(3.8rem,auto) !important; grid-template-rows:none !important; }
+  .mc { min-width:0; min-height:3.8rem; padding:.15rem; overflow:hidden; }
+  .mn { min-width:1.45em; height:1.45em; font-size:.78rem; }
+  .mc .mv { width:.38rem !important; height:.38rem !important; min-width:.38rem; padding:0 !important; margin:.12rem .08rem 0 0 !important; display:inline-block !important; border-left:0 !important; border-radius:50% !important; vertical-align:top; }
+  .mc .mm { display:none !important; }
+  .week { display:flex; flex:0 0 auto; gap:.4rem; overflow-x:auto; padding-bottom:.3rem; min-height:0; scroll-snap-type:x proximity; }
+  .week .day { flex:0 0 5.5rem; min-height:6rem; padding:.35rem; scroll-snap-align:start; }
+  .week .dn { font-size:1.25rem; }
+  .week .ev { font-size:.7rem; }
+  #soon { gap:.35rem; }
+  .chip { font-size:.75rem; }
+  #people { grid-template-columns:minmax(0,1fr) !important; }
+  #menu { right:.55rem; top:auto; width:min(19rem,calc(100vw - 1.1rem)); max-height:72dvh; }
+  #modal { padding:.55rem; }
+  .box { width:min(100%,32rem); max-width:100%; max-height:calc(100dvh - 1.1rem); padding:.9rem; }
+  .box .row { flex-wrap:wrap; }
+  #note { padding:.4rem .65rem; }
+  #mascot { right:.5rem; bottom:.5rem; }
+}
+@media (max-width: 380px) {
+  header { grid-template-columns:auto minmax(0,1fr) auto; }
+  #bSignOut { grid-column:3; grid-row:2; }
+  #bMenu { grid-column:3; grid-row:1; }
+  #date { grid-column:2; grid-row:1 / span 2; }
+  #clock { grid-column:1; grid-row:1 / span 2; }
+  .mh2 { grid-template-columns:minmax(0,1fr) repeat(3,auto); }
+  .mh2 button[data-mm] { grid-column:1; }
+  .mg { grid-auto-rows:minmax(3.35rem,auto) !important; }
+}
+
 </style>
 </head>
 <body>
