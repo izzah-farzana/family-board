@@ -243,6 +243,71 @@ html.tvm body{cursor:none}
   .mg { grid-auto-rows:minmax(3.35rem,auto) !important; }
 }
 
+
+/* Family Board Mobile Refinement V2 */
+@media (max-width: 600px) {
+  header {
+    display:grid !important;
+    grid-template-columns:auto minmax(0,1fr) auto auto !important;
+    align-items:center !important;
+    gap:.4rem .55rem !important;
+    padding:.65rem .75rem !important;
+    min-height:64px;
+  }
+  #clock { font-size:1.35rem !important; line-height:1 !important; }
+  #date { font-size:.72rem !important; line-height:1.25 !important; padding-right:.15rem; }
+  #bMenu {
+    grid-column:3; grid-row:1;
+    min-height:38px !important; padding:.35rem .65rem !important;
+    font-size:.78rem !important; border-radius:999px !important;
+  }
+  /* Sign out lives inside the Menu on mobile, avoiding a crowded header. */
+  header #bSignOut { display:none !important; }
+  #live {
+    position:static !important; grid-column:4; grid-row:1;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:.9rem !important; margin:0 !important;
+  }
+  #menu { top:auto; right:.65rem; width:min(20rem,calc(100vw - 1.3rem)); }
+  #menu #bSignOut { display:flex !important; width:100%; margin-top:.35rem; }
+
+  #monthv { margin:.55rem .45rem !important; padding:.55rem !important; }
+  .mh2 {
+    display:grid !important;
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    gap:.35rem !important;
+    align-items:center !important;
+  }
+  .mh2 .mt {
+    grid-column:1 / -1 !important;
+    font-size:1.55rem !important;
+    line-height:1.12 !important;
+    margin:0 0 .15rem !important;
+  }
+  .mh2 button {
+    width:100% !important; min-width:0 !important;
+    min-height:38px !important; padding:.3rem .15rem !important;
+    font-size:.78rem !important; white-space:nowrap;
+  }
+  .mh2 button[data-mm] { font-size:.72rem !important; }
+  .mh2 .pri { font-size:1.15rem !important; padding:.2rem !important; }
+  .leg { flex-wrap:wrap; }
+  .mw { font-size:.68rem !important; }
+  .mg { grid-auto-rows:minmax(3.25rem,auto) !important; }
+  .mc { min-height:3.25rem !important; }
+  .mn { font-size:.74rem !important; }
+  #boardv { padding-top:.55rem !important; }
+}
+@media (max-width: 380px) {
+  header { grid-template-columns:auto minmax(0,1fr) auto auto !important; }
+  #clock { font-size:1.18rem !important; }
+  #date { font-size:.67rem !important; }
+  #bMenu { font-size:.72rem !important; padding:.3rem .48rem !important; }
+  .mh2 { grid-template-columns:repeat(5,minmax(0,1fr)) !important; }
+  .mh2 button { font-size:.7rem !important; }
+  .mh2 button[data-mm] { font-size:.64rem !important; }
+}
+
 </style>
 </head>
 <body>
@@ -618,7 +683,7 @@ document.addEventListener("click",e=>{
 document.addEventListener("click",e=>{const d=e.target.closest(".day,.mc");if(d&&!e.target.closest("button")&&!edit){if(d.classList.contains("mc")){showDay(d.dataset.day);return}$("bEv").click();if($("f2"))$("f2").value=d.dataset.day}});
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList&&(e.target.classList.contains("day")||e.target.classList.contains("mc")))e.target.click()});
 window.addEventListener("offline",()=>{$("live").textContent="🔴"});window.addEventListener("online",()=>{if(live)$("live").textContent="🟢"});
-(function(){const MENU=[["View",["bMo"]],["Add",["bEv","bMd","bPe"]],["Show",["who","bSz","bTh"]],["More",["bHi","bSh","bDg","bPh"]]],mn=document.createElement("div");mn.id="menu";
+(function(){const MENU=[["View",["bMo"]],["Add",["bEv","bMd","bPe"]],["Show",["who","bSz","bTh"]],["More",["bHi","bSh","bDg","bPh","bSignOut"]]],mn=document.createElement("div");mn.id="menu";
   MENU.forEach(g=>{const t=document.createElement("div");t.className="mg0";t.textContent=g[0];mn.appendChild(t);g[1].forEach(id=>mn.appendChild($(id)))});
   document.body.appendChild(mn);$("bSz").textContent="🔠 Text size";
   $("bMenu").onclick=()=>{mn.style.top=(document.querySelector("header").getBoundingClientRect().bottom+8)+"px";mn.classList.toggle("on")};
